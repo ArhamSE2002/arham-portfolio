@@ -1,0 +1,66 @@
+/* ==========================================================================
+   ARHAM PORTFOLIO - CENTRALIZED COLOR THEME SYSTEM (BLACK & RED)
+   ==========================================================================
+   All color tokens for the entire portfolio are defined here.
+   To switch or customize the theme, simply modify these CSS variables!
+   ========================================================================== */
+
+:root {
+  /* Surface & Background Blacks (Obsidian, Onyx, Deep Midnight) */
+  --bg-primary: #070709;
+  --bg-secondary: #0d0d12;
+  --bg-tertiary: #13131b;
+  --bg-card: rgba(16, 16, 23, 0.72);
+  --bg-card-hover: rgba(24, 24, 34, 0.85);
+  --bg-glass: rgba(8, 8, 12, 0.75);
+  --bg-glass-elevated: rgba(20, 20, 28, 0.8);
+  --bg-input: #121219;
+
+  /* Primary Brand Red Spectrum */
+  --red-primary: #ff2a4b;          /* Vibrant Neon Crimson */
+  --red-accent: #ef4444;           /* Energetic Pure Red */
+  --red-deep: #b91c1c;             /* Deep Scarlet */
+  --red-dark: #7f1d1d;             /* Midnight Wine */
+  --red-glow: rgba(255, 42, 75, 0.35);
+  --red-glow-subtle: rgba(255, 42, 75, 0.12);
+  --red-glow-strong: rgba(255, 42, 75, 0.6);
+  --red-gradient-start: #ff2a4b;
+  --red-gradient-end: #b91c1c;
+
+  /* Secondary Accents */
+  --accent-cyan: #06b6d4;
+  --accent-amber: #f59e0b;
+  --accent-emerald: #10b981;
+
+  /* Typography & Foreground Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --text-red: #ff3b5c;
+
+  /* Borders & Dividers */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.14);
+  --border-highlight: rgba(255, 255, 255, 0.22);
+  --border-red: rgba(255, 42, 75, 0.3);
+  --border-red-active: rgba(255, 42, 75, 0.75);
+
+  /* Elevation & Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.75);
+  --shadow-red: 0 0 24px rgba(255, 42, 75, 0.28);
+  --shadow-red-strong: 0 0 35px rgba(255, 42, 75, 0.5);
+
+  /* Radius Tokens */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 9999px;
+
+  /* Animation Timings */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}

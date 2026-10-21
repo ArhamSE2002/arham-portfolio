@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M. Arham | Software Engineer | CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a2a6c;
+            --secondary: #b8860b;
+            --accent: #2c3e50;
+            --text-main: #2d3436;
+            --text-light: #636e72;
+            --bg-body: #f3f4f6;
+            --bg-card: #ffffff;
+            --border-color: #e9ecef;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.4;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            max-height: 297mm;
+            background: var(--bg-card);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 11mm 14mm;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .top-bar {
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            margin: -11mm -14mm 10mm -14mm;
+        }
+
+        header {
+            padding-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 12px;
+        }
+
+        .header-text h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+            margin-bottom: 2px;
+        }
+
+        .header-text h2 {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px 8px;
+            font-size: 11.5px;
+            color: var(--text-light);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .contact-icon {
+            width: 13px;
+            height: 13px;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-light);
+            text-decoration: none;
+            position: relative;
+            z-index: 10;
+            pointer-events: auto;
+            transition: color 0.2s ease;
+        }
+
+        .contact-link span {
+            border-bottom: 1px dotted var(--text-light);
+        }
+
+        .contact-link:hover {
+            color: var(--primary);
+        }
+
+        .contact-link:hover span {
+            border-bottom: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 1fr 215px;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 14px 0 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 3px;
+            text-transform: uppercase;
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .experience-item {
+            margin-bottom: 14px;
+            padding-left: 12px;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 3px;
+        }
+
+        .exp-role {
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--accent);
+        }
+
+        .exp-company {
+            font-weight: 600;
+            color: var(--secondary);
+            font-size: 12px;
+        }
+
+        .exp-date {
+            font-size: 10px;
+            color: var(--text-light);
+            background: #f1f2f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .exp-details {
+            font-size: 12px;
+            list-style: none;
+            margin-bottom: 2px;
+        }
+
+        .exp-details li {
+            margin-bottom: 4px;
+            position: relative;
+            padding-left: 12px;
+            line-height: 1.45;
+        }
+
+        .exp-details li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .sidebar section {
+            margin-bottom: 20px;
+        }
+
+        .skill-group {
+            margin-bottom: 14px;
+        }
+
+        .skill-list {
+            list-style: none;
+            font-size: 11.5px;
+            color: var(--text-main);
+        }
+
+        .skill-list li {
+            margin-bottom: 5px;
+            padding-left: 11px;
+            position: relative;
+            line-height: 1.45;
+        }
+
+        .skill-list li::before {
+            content: "›";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .cert-card {
+            margin-bottom: 12px;
+            padding-bottom: 9px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .cert-name {
+            font-weight: 700;
+            font-size: 12px;
+            color: var(--accent);
+            display: block;
+        }
+
+        .cert-issuer {
+            font-size: 10.5px;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .edu-item {
+            margin-bottom: 12px;
+        }
+
+        .edu-degree {
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .edu-school {
+            font-size: 11px;
+            color: var(--text-light);
+        }
+
+        .print-toolbar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+            z-index: 1000;
+        }
+
+        .print-btn {
+            background: linear-gradient(135deg, var(--primary), #2c3e50);
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(26, 42, 108, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .print-tip {
+            background: #ffffff;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--secondary);
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 10.5px;
+            max-width: 250px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            line-height: 1.35;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            html, body {
+                width: 210mm;
+                height: 297mm;
+                padding: 0;
+                margin: 0;
+                background: #ffffff;
+            }
+
+            .page {
+                box-shadow: none;
+                margin: 0;
+                width: 210mm;
+                height: 297mm;
+                max-height: 297mm;
+                overflow: hidden;
+                page-break-after: avoid;
+                break-after: avoid;
+            }
+
+            .print-toolbar {
+                display: none !important;
+            }
+
+            .contact-link {
+                color: var(--text-main) !important;
+                text-decoration: none !important;
+                pointer-events: auto !important;
+            }
+
+            .contact-link span {
+                text-decoration: underline !important;
+                text-decoration-color: var(--primary) !important;
+                color: var(--primary) !important;
+                border-bottom: none !important;
+            }
+
+            a {
+                color: var(--primary) !important;
+                text-decoration: underline !important;
+                pointer-events: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="print-toolbar">
+        <button class="print-btn" onclick="window.print()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            Print / Save as PDF
+        </button>
+        <div class="print-tip">
+            <strong>Link Tip:</strong> Destination: <b>Save as PDF</b> to keep hyperlinks active!
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="top-bar"></div>
+        <header>
+            <div class="header-text" style="width: 100%;">
+                <h1>M. Arham</h1>
+                <h2>Software Engineer | Python & App Development</h2>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>Habib Colony, Cheema Town, Bahawalpur</span>
+                    </div>
+                    <div class="contact-item">
+                        <a href="mailto:arhamse2002@gmail.com" class="contact-link">
+                            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <span>arhamse2002@gmail.com</span>
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <a href="tel:+923023344759" class="contact-link">
+                            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                            <span>+92 302 3344759</span>
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <a href="https://github.com/ArhamSE2002" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
+                            <span>github.com/ArhamSE2002</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="layout-grid">
+            <div class="left-col">
+                <section>
+                    <h2 class="section-title">Summary</h2>
+                    <p style="font-size: 11.5px; text-align: justify; color: var(--text-main); line-height: 1.5;">
+                        Software Engineering graduate (3.58 CGPA) with foundational proficiency in Python, exploratory data analysis (EDA), and frontend UI development. Experienced in inspecting datasets with Pandas, plotting visual insights with Matplotlib, and crafting clean application interfaces. Eager to contribute disciplined problem-solving and software development skills in an internship role.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="section-title">Professional Experience</h2>
+                    <div class="experience-item" style="border-left-color: var(--primary);">
+                        <div class="exp-header">
+                            <div><span class="exp-role">Teaching Assistant – Python & AI</span><br><span class="exp-company">Corvit Systems (NAVTTC)</span></div>
+                            <span class="exp-date">Sep 2025 – Apr 2026</span>
+                        </div>
+                        <ul class="exp-details">
+                            <li>Mentored students in Python syntax, fundamental data structures, and algorithmic logic.</li>
+                            <li>Guided practical lab sessions on data handling, file operations, and exploratory exercises.</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item" style="border-left-color: var(--secondary);">
+                        <div class="exp-header">
+                            <div><span class="exp-role">Flutter Developer – Apprenticeship</span><br><span class="exp-company">Abinos</span></div>
+                            <span class="exp-date">Apr 2026 – Present</span>
+                        </div>
+                        <ul class="exp-details">
+                            <li>Collaborated with team members to implement clean UI components and maintain mobile codebase structures.</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2 class="section-title">Key Projects</h2>
+                    <div class="experience-item" style="border-left-color: var(--primary);">
+                        <div class="exp-header">
+                            <div><span class="exp-role">Dataset Exploratory Data Analysis & Visualization (EDA)</span></div>
+                        </div>
+                        <ul class="exp-details">
+                            <li>Conducted end-to-end exploratory data analysis on a multi-feature dataset using Python.</li>
+                            <li>Performed data cleaning, missing value handling, and summary statistics calculation using Pandas and NumPy.</li>
+                            <li>Identified hidden patterns and correlations, generating histograms, scatter plots, and bar graphs using Matplotlib to communicate insights clearly.</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item" style="border-left-color: var(--secondary);">
+                        <div class="exp-header">
+                            <div><span class="exp-role">Islam Master – Quran & Daily Companion App</span></div>
+                        </div>
+                        <ul class="exp-details">
+                            <li>Built a comprehensive Quran application featuring complete English and Urdu translations.</li>
+                            <li>Implemented essential utilities including an accurate Qibla finder, digital Tasbeeh counter, and a curated collection of daily Islamic quotes.</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item" style="border-left-color: var(--primary);">
+                        <div class="exp-header">
+                            <div><span class="exp-role">ALLJOBSGH – Freelancing Platform (Frontend)</span></div>
+                        </div>
+                        <ul class="exp-details">
+                            <li>Engineered the complete responsive frontend user interface for a freelancing and job search platform.</li>
+                            <li>Built intuitive screens for browsing jobs, searching services, viewing freelancer profiles, and tracking applications.</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <div class="sidebar">
+                <section>
+                    <h2 class="section-title">Technical Skills</h2>
+                    <div class="skill-group" style="margin-bottom: 0;">
+                        <ul class="skill-list">
+                            <li>Frontend UI (Flutter)</li>
+                            <li>Git & GitHub</li>
+                            <li>Python Programming</li>
+                            <li>Exploratory Data Analysis (EDA)</li>
+                            <li>Pandas & NumPy</li>
+                            <li>Data Visualization (Matplotlib)</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2 class="section-title">Education</h2>
+                    <div class="edu-item">
+                        <div class="edu-degree">BS Software Engineering</div>
+                        <div class="edu-school">Islamia Univ. Bahawalpur</div>
+                        <div style="font-size: 10px; color: var(--text-light); margin-top: 2px;">Sep 2021 – Sep 2025 | CGPA: 3.58</div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2 class="section-title">Certifications</h2>
+                    <div class="cert-card">
+                        <span class="cert-name">Data Analysis with Python</span>
+                        <span class="cert-issuer">NAVTTC</span>
+                    </div>
+                    <div class="cert-card">
+                        <span class="cert-name">HCCDA – AI Certification</span>
+                        <span class="cert-issuer">Huawei Certified</span>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="section-title">Languages</h2>
+                    <div class="skill-group" style="margin-bottom: 0;">
+                        <ul class="skill-list">
+                            <li>Urdu (Native)</li>
+                            <li>English (Working)</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
