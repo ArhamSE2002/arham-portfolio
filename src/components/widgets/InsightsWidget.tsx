@@ -5,9 +5,12 @@ import Image from 'next/image';
 import { ArrowUpRight, Clock, X, BookOpen } from 'lucide-react';
 import { insightArticles } from '@/data/portfolioData';
 import { InsightArticle } from '@/types/portfolio';
+import { useScrollReveal, useStaggerReveal } from '@/hooks/useScrollReveal';
 
 export default function InsightsWidget() {
   const [selectedArticle, setSelectedArticle] = useState<InsightArticle | null>(null);
+  const headerRef = useScrollReveal<HTMLDivElement>('scroll-revealed');
+  const gridRef = useStaggerReveal<HTMLDivElement>();
 
   return (
     <section
@@ -21,7 +24,7 @@ export default function InsightsWidget() {
     >
       <div style={{ maxWidth: '1320px', margin: '0 auto' }}>
         {/* Header */}
-        <div style={{ marginBottom: '64px' }}>
+        <div ref={headerRef} className="reveal-fade-up" style={{ marginBottom: '64px' }}>
           <div className="eyebrow-tag">
             <span style={{ color: 'var(--red-accent)' }}>•</span>
             <span>TECH INSIGHTS</span>
@@ -34,8 +37,9 @@ export default function InsightsWidget() {
           </h2>
         </div>
 
-        {/* Articles Grid (Matches Video 00:32 - 00:33) */}
+        {/* Articles Grid */}
         <div
+          ref={gridRef}
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',

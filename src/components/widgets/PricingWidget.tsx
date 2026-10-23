@@ -3,9 +3,11 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, Zap, Check, CheckCircle2 } from 'lucide-react';
 import { pricingPlans } from '@/data/portfolioData';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export default function PricingWidget() {
   const [activeTab, setActiveTab] = useState<'project' | 'monthly'>('project');
+  const headerRef = useScrollReveal<HTMLDivElement>('scroll-revealed');
 
   const filteredPlans = pricingPlans.filter((p) => p.type === activeTab);
 
@@ -19,8 +21,10 @@ export default function PricingWidget() {
       }}
     >
       <div style={{ maxWidth: '1320px', margin: '0 auto' }}>
-        {/* Header with Switcher Tabs (Matches Video 00:27 - 00:29) */}
+        {/* Header with Switcher Tabs */}
         <div
+          ref={headerRef}
+          className="reveal-fade-up"
           style={{
             display: 'flex',
             justifyContent: 'space-between',

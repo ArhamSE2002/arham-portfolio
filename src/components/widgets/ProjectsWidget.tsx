@@ -5,10 +5,14 @@ import Image from 'next/image';
 import { ArrowUpRight, X, ChevronLeft, ChevronRight, Github, CheckCircle2, Layers } from 'lucide-react';
 import { projectsList } from '@/data/portfolioData';
 import { Project } from '@/types/portfolio';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export default function ProjectsWidget() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentGalleryIdx, setCurrentGalleryIdx] = useState(0);
+  const headerRef = useScrollReveal<HTMLDivElement>('scroll-revealed');
+  const col1Ref = useScrollReveal<HTMLDivElement>('scroll-revealed');
+  const col2Ref = useScrollReveal<HTMLDivElement>('scroll-revealed');
 
   const openProjectModal = (proj: Project) => {
     setSelectedProject(proj);
@@ -41,7 +45,7 @@ export default function ProjectsWidget() {
     >
       <div style={{ maxWidth: '1320px', margin: '0 auto' }}>
         {/* Section Header */}
-        <div style={{ marginBottom: '64px' }}>
+        <div ref={headerRef} className="reveal-fade-up" style={{ marginBottom: '64px' }}>
           <div className="eyebrow-tag">
             <span style={{ color: 'var(--red-accent)' }}>•</span>
             <span>PORTFOLIO</span>
@@ -64,7 +68,7 @@ export default function ProjectsWidget() {
           className="projects-masonry-grid"
         >
           {/* Column 1 */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
+          <div ref={col1Ref} className="reveal-slide-left" style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
             {col1Projects.map((project) => (
               <div
                 key={project.id}
@@ -165,13 +169,14 @@ export default function ProjectsWidget() {
 
           {/* Column 2 (Offset / Staggered in height) */}
           <div
+            ref={col2Ref}
+            className="reveal-slide-right masonry-col-offset"
             style={{
               display: 'flex',
               flexDirection: 'column',
               gap: '48px',
               paddingTop: '60px',
             }}
-            className="masonry-col-offset"
           >
             {col2Projects.map((project) => (
               <div

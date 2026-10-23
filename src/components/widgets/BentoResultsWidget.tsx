@@ -3,8 +3,12 @@
 import React from 'react';
 import Image from 'next/image';
 import { Star, Zap, CheckCircle2 } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export default function BentoResultsWidget() {
+  const headerRef = useScrollReveal<HTMLDivElement>('scroll-revealed');
+  const bentoRef = useScrollReveal<HTMLDivElement>('scroll-revealed');
+
   return (
     <section
       style={{
@@ -16,7 +20,7 @@ export default function BentoResultsWidget() {
     >
       <div style={{ maxWidth: '1320px', margin: '0 auto' }}>
         {/* Header */}
-        <div style={{ marginBottom: '64px' }}>
+        <div ref={headerRef} className="reveal-fade-up" style={{ marginBottom: '64px' }}>
           <div className="eyebrow-tag">
             <span style={{ color: 'var(--red-accent)' }}>•</span>
             <span>WHY CHOOSE ME</span>
@@ -31,12 +35,13 @@ export default function BentoResultsWidget() {
 
         {/* Bento Grid Layout (Matches Video 00:21 - 00:22) */}
         <div
+          ref={bentoRef}
+          className="reveal-scale-up bento-grid-container"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(12, 1fr)',
             gap: '24px',
           }}
-          className="bento-grid-container"
         >
           {/* Card 1: Experience Years (Col 1-4) */}
           <div

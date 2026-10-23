@@ -1,11 +1,17 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import Image from 'next/image';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { statsMetrics } from '@/data/portfolioData';
+import { useScrollReveal, useStaggerReveal } from '@/hooks/useScrollReveal';
 
 export default function ImpactSectionWidget() {
+  const titleRef = useScrollReveal<HTMLDivElement>('scroll-revealed');
+  const bioRef = useScrollReveal<HTMLDivElement>('scroll-revealed');
+  const imageRef = useScrollReveal<HTMLDivElement>('scroll-revealed');
+  const statsRef = useStaggerReveal<HTMLDivElement>();
+
   return (
     <section
       id="about-section"
@@ -29,7 +35,7 @@ export default function ImpactSectionWidget() {
           className="impact-top-grid"
         >
           {/* Left Title */}
-          <div>
+          <div ref={titleRef} className="reveal-slide-left">
             <div className="eyebrow-tag">
               <span style={{ color: 'var(--red-accent)' }}>•</span>
               <span>BETTER DIGITAL EXPERIENCES</span>
@@ -43,8 +49,8 @@ export default function ImpactSectionWidget() {
           </div>
 
           {/* Right Column: Decorative Star & Short Bio */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            {/* Asterisk / Star icon (matches video 00:09) */}
+          <div ref={bioRef} className="reveal-slide-right" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            {/* Asterisk / Star icon */}
             <div
               style={{
                 width: '48px',
@@ -72,7 +78,7 @@ export default function ImpactSectionWidget() {
                 margin: 0,
               }}
             >
-              HI, I&apos;M M. ARHAM, A FLUTTER & FULL-STACK MOBILE ENGINEER PASSIONATE ABOUT ARCHITECTING INTUITIVE, SCALABLE, AND HIGH-PERFORMANCE DIGITAL PRODUCTS.
+              HI, I&apos;M M. ARHAM, A FLUTTER &amp; FULL-STACK MOBILE ENGINEER PASSIONATE ABOUT ARCHITECTING INTUITIVE, SCALABLE, AND HIGH-PERFORMANCE DIGITAL PRODUCTS.
             </p>
 
             <p style={{ fontSize: '15px', color: 'var(--light-text-body)', lineHeight: '1.65', margin: 0 }}>
@@ -81,7 +87,7 @@ export default function ImpactSectionWidget() {
           </div>
         </div>
 
-        {/* Staggered Visual & Metric Grid (Matches Video 00:09 - 00:10) */}
+        {/* Staggered Visual & Metric Grid */}
         <div
           style={{
             display: 'grid',
@@ -91,38 +97,41 @@ export default function ImpactSectionWidget() {
           }}
           className="impact-metrics-grid"
         >
-          {/* Left Side: Photo Card (Artistic Graphic from Monefii) */}
-          <div
-            style={{
-              position: 'relative',
-              width: '100%',
-              aspectRatio: '4 / 3',
-              borderRadius: '8px',
-              overflow: 'hidden',
-              background: '#0d0d12',
-              boxShadow: '0 20px 48px rgba(0, 0, 0, 0.12)',
-              border: '1px solid var(--light-border)',
-            }}
-          >
-            <Image
-              src="/impact-editorial.jpg"
-              alt="Mobile Engineering Architectural Core"
-              fill
-              priority
-              style={{ objectFit: 'cover' }}
-            />
-            {/* Corner Crosshairs */}
-            <span style={{ position: 'absolute', top: '10px', left: '10px', color: '#ffffff', fontSize: '14px', fontFamily: 'monospace' }}>+</span>
-            <span style={{ position: 'absolute', top: '10px', right: '10px', color: '#ffffff', fontSize: '14px', fontFamily: 'monospace' }}>+</span>
-            <span style={{ position: 'absolute', bottom: '10px', left: '10px', color: '#ffffff', fontSize: '14px', fontFamily: 'monospace' }}>+</span>
-            <span style={{ position: 'absolute', bottom: '10px', right: '10px', color: '#ffffff', fontSize: '14px', fontFamily: 'monospace' }}>+</span>
+          {/* Left Side: Photo Card */}
+          <div ref={imageRef} className="reveal-scale-up">
+            <div
+              style={{
+                position: 'relative',
+                width: '100%',
+                aspectRatio: '4 / 3',
+                borderRadius: '8px',
+                overflow: 'hidden',
+                background: '#0d0d12',
+                boxShadow: '0 20px 48px rgba(0, 0, 0, 0.12)',
+                border: '1px solid var(--light-border)',
+              }}
+            >
+              <Image
+                src="/impact-editorial.jpg"
+                alt="Mobile Engineering Architectural Core"
+                fill
+                priority
+                style={{ objectFit: 'cover' }}
+              />
+              {/* Corner Crosshairs */}
+              <span style={{ position: 'absolute', top: '10px', left: '10px', color: '#ffffff', fontSize: '14px', fontFamily: 'monospace' }}>+</span>
+              <span style={{ position: 'absolute', top: '10px', right: '10px', color: '#ffffff', fontSize: '14px', fontFamily: 'monospace' }}>+</span>
+              <span style={{ position: 'absolute', bottom: '10px', left: '10px', color: '#ffffff', fontSize: '14px', fontFamily: 'monospace' }}>+</span>
+              <span style={{ position: 'absolute', bottom: '10px', right: '10px', color: '#ffffff', fontSize: '14px', fontFamily: 'monospace' }}>+</span>
+            </div>
           </div>
 
-          {/* Right Side: Big Numeric Stats with Descriptions */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+          {/* Right Side: Big Numeric Stats */}
+          <div ref={statsRef} style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
             {statsMetrics.map((stat, idx) => (
               <div
                 key={stat.id}
+                className="reveal-stagger-child"
                 style={{
                   display: 'flex',
                   alignItems: 'baseline',

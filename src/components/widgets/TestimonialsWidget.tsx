@@ -1,20 +1,14 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { testimonialsList } from '@/data/portfolioData';
+import { useScrollReveal, useStaggerReveal } from '@/hooks/useScrollReveal';
 
 export default function TestimonialsWidget() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonialsList.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonialsList.length) % testimonialsList.length);
-  };
+  const headerRef = useScrollReveal<HTMLDivElement>('scroll-revealed');
+  const cardsRef = useStaggerReveal<HTMLDivElement>();
 
   return (
     <section
@@ -26,8 +20,10 @@ export default function TestimonialsWidget() {
       }}
     >
       <div style={{ maxWidth: '1320px', margin: '0 auto' }}>
-        {/* Header Row (Matches Video 00:25) */}
+        {/* Header Row */}
         <div
+          ref={headerRef}
+          className="reveal-fade-up"
           style={{
             display: 'flex',
             justifyContent: 'space-between',
@@ -67,8 +63,9 @@ export default function TestimonialsWidget() {
           </div>
         </div>
 
-        {/* Testimonials Horizontal Carousel (Matches Video 00:26) */}
+        {/* Testimonials Grid with stagger */}
         <div
+          ref={cardsRef}
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
@@ -79,7 +76,7 @@ export default function TestimonialsWidget() {
           {testimonialsList.map((test) => (
             <div
               key={test.id}
-              className="editorial-card"
+              className="editorial-card reveal-stagger-child"
               style={{
                 display: 'flex',
                 flexDirection: 'column',

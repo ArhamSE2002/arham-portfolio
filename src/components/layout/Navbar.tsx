@@ -104,6 +104,7 @@ export default function Navbar({ activeView = 'home', onNavigate }: NavbarProps)
               { id: 'about', label: 'About', href: '#about-section' },
               { id: 'services', label: 'Services', href: '#services-section' },
               { id: 'projects', label: 'Projects', href: '#projects-section' },
+              { id: 'pricing', label: 'Pricing', href: '#pricing-section' },
               { id: 'contact', label: 'Contact', href: '#contact-section' },
             ].map((link) => {
               const isActive = activeView === link.id;
@@ -313,6 +314,7 @@ export default function Navbar({ activeView = 'home', onNavigate }: NavbarProps)
                 { id: 'about', label: 'ABOUT', href: '#about-section' },
                 { id: 'services', label: 'SERVICES', href: '#services-section' },
                 { id: 'projects', label: 'PROJECTS', href: '#projects-section' },
+                { id: 'pricing', label: 'PRICING', href: '#pricing-section' },
                 { id: 'articles', label: 'BLOGS & ARTICLES', href: '#insights-section' },
                 { id: 'contact', label: 'CONTACT', href: '#contact-section' },
               ].map((item, idx) => (

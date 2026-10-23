@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { servicesCatalog } from '@/data/portfolioData';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 interface ServicesWidgetProps {
   onSelectProject?: (projectId: string) => void;
@@ -12,6 +13,9 @@ interface ServicesWidgetProps {
 export default function ServicesWidget({ onSelectProject }: ServicesWidgetProps) {
   const [activeServiceIndex, setActiveServiceIndex] = useState(0);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const headerRef = useScrollReveal<HTMLDivElement>('scroll-revealed');
+  const leftColRef = useScrollReveal<HTMLDivElement>('scroll-revealed');
+  const rightColRef = useScrollReveal<HTMLDivElement>('scroll-revealed');
 
   const activeService = servicesCatalog[activeServiceIndex];
 
@@ -32,7 +36,7 @@ export default function ServicesWidget({ onSelectProject }: ServicesWidgetProps)
     >
       <div style={{ maxWidth: '1320px', margin: '0 auto' }}>
         {/* Section Header */}
-        <div style={{ marginBottom: '64px' }}>
+        <div ref={headerRef} className="reveal-fade-up" style={{ marginBottom: '64px' }}>
           <div className="eyebrow-tag">
             <span style={{ color: 'var(--red-accent)' }}>•</span>
             <span>OUR SERVICES</span>
@@ -56,7 +60,7 @@ export default function ServicesWidget({ onSelectProject }: ServicesWidgetProps)
           className="services-master-grid"
         >
           {/* Left Column: Interactive Service Accordion List */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '36px' }}>
+          <div ref={leftColRef} className="reveal-slide-left" style={{ display: 'flex', flexDirection: 'column', gap: '36px' }}>
             {servicesCatalog.map((service, index) => {
               const isActive = index === activeServiceIndex;
               return (
@@ -182,8 +186,10 @@ export default function ServicesWidget({ onSelectProject }: ServicesWidgetProps)
             })}
           </div>
 
-          {/* Right Column: Live Interactive Image Preview with Switcher Dots (Matches Video 00:11 - 00:13) */}
+          {/* Right Column: Live Interactive Image Preview */}
           <div
+            ref={rightColRef}
+            className="reveal-slide-right services-preview-panel"
             style={{
               position: 'sticky',
               top: '120px',
@@ -191,7 +197,6 @@ export default function ServicesWidget({ onSelectProject }: ServicesWidgetProps)
               flexDirection: 'column',
               gap: '16px',
             }}
-            className="services-preview-panel"
           >
             <div
               style={{

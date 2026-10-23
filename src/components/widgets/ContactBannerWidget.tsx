@@ -3,11 +3,13 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, Send, CheckCircle2, Phone, Mail, MessageCircle } from 'lucide-react';
 import { contactDetails } from '@/data/portfolioData';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export default function ContactBannerWidget() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const bannerRef = useScrollReveal<HTMLDivElement>('scroll-revealed');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,20 +33,10 @@ export default function ContactBannerWidget() {
       }}
     >
       <div style={{ maxWidth: '1320px', margin: '0 auto' }}>
-        {/* Split Banner Container (Matches Video 00:34 - 00:35) */}
+        {/* Split Banner Container */}
         <div
-          style={{
-            position: 'relative',
-            borderRadius: '16px',
-            overflow: 'hidden',
-            background: 'linear-gradient(135deg, #111116 0%, #1a0808 50%, #2a0b0b 100%)',
-            border: '1px solid rgba(255, 255, 255, 0.12)',
-            boxShadow: '0 32px 80px rgba(0, 0, 0, 0.25)',
-            display: 'grid',
-            gridTemplateColumns: '460px 1fr',
-            minHeight: '560px',
-          }}
-          className="contact-banner-grid"
+          ref={bannerRef}
+          className="reveal-scale-up contact-banner-grid"
         >
           {/* Left Column: Form Card with White Border / Floating Frame (Matches Video 00:34) */}
           <div

@@ -2,9 +2,12 @@
 
 import React, { useState } from 'react';
 import { faqList } from '@/data/portfolioData';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export default function FAQWidget() {
-  const [openIndex, setOpenIndex] = useState<number | null>(1); // Open #2 by default as seen in video
+  const [openIndex, setOpenIndex] = useState<number | null>(1);
+  const leftRef = useScrollReveal<HTMLDivElement>('scroll-revealed');
+  const rightRef = useScrollReveal<HTMLDivElement>('scroll-revealed');
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -31,7 +34,7 @@ export default function FAQWidget() {
           className="faq-split-grid"
         >
           {/* Left Title */}
-          <div>
+          <div ref={leftRef} className="reveal-slide-left">
             <div className="eyebrow-tag">
               <span style={{ color: 'var(--red-accent)' }}>•</span>
               <span>FAQ</span>
@@ -43,8 +46,8 @@ export default function FAQWidget() {
             </h2>
           </div>
 
-          {/* Right Accordion List (Matches Video 00:59 - 01:01) */}
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          {/* Right Accordion List */}
+          <div ref={rightRef} className="reveal-slide-right" style={{ display: 'flex', flexDirection: 'column' }}>
             {faqList.map((item, index) => {
               const isOpen = openIndex === index;
               return (

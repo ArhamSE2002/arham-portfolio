@@ -27,86 +27,104 @@ export default function HomePage() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       setActiveView('home');
-      if (view === 'services') {
-        setTimeout(() => {
-          document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      } else if (view === 'projects') {
-        setTimeout(() => {
-          document.getElementById('projects-section')?.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      } else if (view === 'contact') {
-        setTimeout(() => {
-          document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      } else if (view === 'articles') {
-        setTimeout(() => {
-          document.getElementById('insights-section')?.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+      const scrollTo = (id: string) =>
+        setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 100);
+      if (view === 'services') scrollTo('services-section');
+      else if (view === 'projects') scrollTo('projects-section');
+      else if (view === 'contact') scrollTo('contact-section');
+      else if (view === 'articles') scrollTo('insights-section');
+      else if (view === 'pricing') scrollTo('pricing-section');
+      else window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   return (
     <div style={{ minHeight: '100vh', position: 'relative' }}>
-      {/* Top Navbar with Video-Matching Animated Hamburger & Full-Screen Menu */}
       <Navbar activeView={activeView} onNavigate={handleNavigate} />
 
       {activeView === 'about' ? (
-        /* Dedicated About Page View (Matches Video Frames 00:39 - 00:51) */
         <main>
           <AboutView />
-          <FAQWidget />
-          <ContactBannerWidget />
+          <SectionReveal><FAQWidget /></SectionReveal>
+          <SectionReveal><ContactBannerWidget /></SectionReveal>
         </main>
       ) : (
-        /* Complete Rich Landing Experience (Matches Video Frames 00:00 - 00:37) */
+        /* Conversion Flow: Hero → Brand Trust → About → Services → Workstation → Projects → Process → Results → Testimonials → Pricing → Insights → Contact → FAQ */
         <main>
-          {/* 1. Hero with Warm Terracotta-Crimson Canvas, 4-Col Grid, Watermark & Floating Cards */}
+          {/* 1. Hero — strong first impression (minimal changes) */}
           <HeroWidget />
 
-          {/* 2. Trusted Brands / Tech Stack Infinite Continuous Marquee Ticker */}
-          <BrandMarqueeWidget />
+          {/* 2. Marquee — instant tech credibility signal */}
+          <SectionReveal><BrandMarqueeWidget /></SectionReveal>
 
-          {/* 3. Impact & Mobile Engineering Metrics with Star Icon & Photo Card */}
-          <ImpactSectionWidget />
+          {/* 3. About / Impact — who I am + social proof numbers */}
+          <SectionReveal><ImpactSectionWidget /></SectionReveal>
 
-          {/* 4. Powerful Services with Interactive Accordion & Live Preview Image Switcher */}
-          <ServicesWidget />
+          {/* 4. Services — what I offer ("can you help me?") */}
+          <SectionReveal><ServicesWidget /></SectionReveal>
 
-          {/* 5. Our Projects Masonry Showcase with Clean Quranic Images & High-Res Lightbox Modal */}
-          <ProjectsWidget />
+          {/* 5. Live Flutter Workstation — proof of craft */}
+          <SectionReveal><WorkstationBannerWidget /></SectionReveal>
 
-          {/* 6. Engineering Process That Works (Dark High-Contrast 4-Card Section) */}
-          <ProcessWidget />
+          {/* 6. Projects — portfolio proof */}
+          <SectionReveal><ProjectsWidget /></SectionReveal>
 
-          {/* 7. Bento Grid: Focused on Engineering That Delivers Results */}
-          <BentoResultsWidget />
+          {/* 7. Engineering Process — how I work */}
+          <SectionReveal><ProcessWidget /></SectionReveal>
 
-          {/* 8. Cinematic Workstation Banner: Live Flutter IDE & Interactive Mobile Simulator */}
-          <WorkstationBannerWidget />
+          {/* 8. Results / Bento Grid — tangible outcomes */}
+          <SectionReveal><BentoResultsWidget /></SectionReveal>
 
-          {/* 9. What My Clients Say: Testimonials Horizontal Carousel */}
-          <TestimonialsWidget />
+          {/* 9. Testimonials — social proof before pricing */}
+          <SectionReveal><TestimonialsWidget /></SectionReveal>
 
-          {/* 10. Simple Plans for Every Need: Pricing Tabs (Monthly vs Project) & Black Cards */}
-          <PricingWidget />
+          {/* 10. Pricing — clear investment options */}
+          <div id="pricing-section">
+            <SectionReveal><PricingWidget /></SectionReveal>
+          </div>
 
-          {/* 11. Latest Tech & Architecture Insights with Article Preview Reader */}
-          <InsightsWidget />
+          {/* 11. Insights — thought leadership */}
+          <SectionReveal><InsightsWidget /></SectionReveal>
 
-          {/* 12. Let's Create Together: Split Contact Banner with Interactive Form Card */}
-          <ContactBannerWidget />
+          {/* 12. Contact — final CTA */}
+          <SectionReveal><ContactBannerWidget /></SectionReveal>
 
-          {/* 13. Frequent Questions: Expandable FAQ Accordion */}
-          <FAQWidget />
+          {/* 13. FAQ — handle objections */}
+          <SectionReveal><FAQWidget /></SectionReveal>
         </main>
       )}
 
-      {/* Global Editorial Footer with Giant ARHAM Watermark & Newsletter Form */}
       <Footer onNavigate={handleNavigate} />
+    </div>
+  );
+}
+
+/* ─── Scroll Reveal Wrapper ────────────────────────────────────────────────
+   Lightweight IntersectionObserver wrapper. Adds 'scroll-revealed' class
+   when the section enters the viewport triggering the CSS fade+slide-up.
+   ──────────────────────────────────────────────────────────────────────── */
+function SectionReveal({ children, id }: { children: React.ReactNode; id?: string }) {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add('scroll-revealed');
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.07, rootMargin: '0px 0px -50px 0px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} id={id} className="section-scroll-wrapper">
+      {children}
     </div>
   );
 }

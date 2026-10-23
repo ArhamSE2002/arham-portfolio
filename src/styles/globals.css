@@ -273,3 +273,123 @@ h1, h2, h3, h4, h5, h6, .font-display {
     padding: 50px 16px;
   }
 }
+
+/* Contact Banner Grid — styles lifted from inline to allow animation class coexistence */
+.contact-banner-grid {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #111116 0%, #1a0808 50%, #2a0b0b 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.25);
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  min-height: 560px;
+}
+
+@media (max-width: 960px) {
+  .contact-banner-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ==========================================================================
+   SCROLL REVEAL ANIMATION SYSTEM
+   ========================================================================== */
+
+/* --- Base hidden states (elements start invisible) --- */
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-fade-in {
+  opacity: 0;
+  transition: opacity 0.65s ease;
+}
+
+.reveal-slide-left {
+  opacity: 0;
+  transform: translateX(-48px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-slide-right {
+  opacity: 0;
+  transform: translateX(48px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-scale-up {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* --- Visible (triggered) states --- */
+.scroll-revealed.reveal-fade-up,
+.scroll-revealed.reveal-fade-in,
+.scroll-revealed.reveal-slide-left,
+.scroll-revealed.reveal-slide-right,
+.scroll-revealed.reveal-scale-up {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Stagger system: parent gets class, children delay --- */
+.reveal-stagger-child {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-stagger-visible .reveal-stagger-child:nth-child(1)  { transition-delay: 0ms;   opacity: 1; transform: none; }
+.scroll-stagger-visible .reveal-stagger-child:nth-child(2)  { transition-delay: 80ms;  opacity: 1; transform: none; }
+.scroll-stagger-visible .reveal-stagger-child:nth-child(3)  { transition-delay: 160ms; opacity: 1; transform: none; }
+.scroll-stagger-visible .reveal-stagger-child:nth-child(4)  { transition-delay: 240ms; opacity: 1; transform: none; }
+.scroll-stagger-visible .reveal-stagger-child:nth-child(5)  { transition-delay: 320ms; opacity: 1; transform: none; }
+.scroll-stagger-visible .reveal-stagger-child:nth-child(6)  { transition-delay: 400ms; opacity: 1; transform: none; }
+.scroll-stagger-visible .reveal-stagger-child:nth-child(7)  { transition-delay: 480ms; opacity: 1; transform: none; }
+.scroll-stagger-visible .reveal-stagger-child:nth-child(8)  { transition-delay: 560ms; opacity: 1; transform: none; }
+
+/* Delay variants for manual staggering */
+.reveal-delay-1 { transition-delay: 80ms !important; }
+.reveal-delay-2 { transition-delay: 160ms !important; }
+.reveal-delay-3 { transition-delay: 240ms !important; }
+.reveal-delay-4 { transition-delay: 320ms !important; }
+.reveal-delay-5 { transition-delay: 400ms !important; }
+
+/* Section-level wrapper — subtle fade from slightly below */
+.section-scroll-wrapper {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.section-scroll-wrapper.scroll-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-fade-up,
+  .reveal-fade-in,
+  .reveal-slide-left,
+  .reveal-slide-right,
+  .reveal-scale-up,
+  .reveal-stagger-child,
+  .section-scroll-wrapper {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

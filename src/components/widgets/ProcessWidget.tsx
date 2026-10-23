@@ -1,9 +1,13 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { processSteps } from '@/data/portfolioData';
+import { useScrollReveal, useStaggerReveal } from '@/hooks/useScrollReveal';
 
 export default function ProcessWidget() {
+  const headerRef = useScrollReveal<HTMLDivElement>('scroll-revealed');
+  const gridRef = useStaggerReveal<HTMLDivElement>();
+
   return (
     <section
       style={{
@@ -16,7 +20,7 @@ export default function ProcessWidget() {
     >
       <div style={{ maxWidth: '1320px', margin: '0 auto' }}>
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '72px' }}>
+        <div ref={headerRef} className="reveal-fade-up" style={{ textAlign: 'center', marginBottom: '72px' }}>
           <div className="eyebrow-tag dark" style={{ margin: '0 auto 20px' }}>
             <span style={{ color: 'var(--red-accent)' }}>•</span>
             <span>MY ENGINEERING PROCESS</span>
@@ -28,8 +32,9 @@ export default function ProcessWidget() {
           </h2>
         </div>
 
-        {/* 4 Dark Cards Grid (Matches Video 00:19 - 00:20) */}
+        {/* 4 Dark Cards Grid */}
         <div
+          ref={gridRef}
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4, 1fr)',
@@ -40,6 +45,7 @@ export default function ProcessWidget() {
           {processSteps.map((step) => (
             <div
               key={step.step}
+              className="reveal-stagger-child"
               style={{
                 background: '#121218',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
