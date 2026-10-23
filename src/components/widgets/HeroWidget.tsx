@@ -1,327 +1,217 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
-import {
-  ArrowRight,
-  Download,
-  Terminal,
-  Sparkles,
-  Layers,
-  Smartphone,
-  Cpu,
-  CheckCircle2,
-  ExternalLink,
-  Code2,
-} from 'lucide-react';
-import { contactDetails, bioSummary, statsMetrics } from '@/data/portfolioData';
+import { ArrowUpRight, MessageSquare, Sparkles, X, ChevronRight } from 'lucide-react';
+import { contactDetails, bioSummary } from '@/data/portfolioData';
 
 export default function HeroWidget() {
+  const [chatWidgetOpen, setChatWidgetOpen] = useState(true);
+
   return (
     <section
-      id="about"
+      id="hero"
       style={{
-        paddingTop: '130px',
-        paddingBottom: '80px',
         position: 'relative',
-        zIndex: 2,
+        minHeight: '100vh',
+        background: 'var(--hero-canvas)',
+        color: '#ffffff',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        paddingTop: '90px',
       }}
     >
-      <div className="section-container" style={{ padding: '0 24px' }}>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1.15fr 0.85fr',
-            gap: '48px',
-            alignItems: 'center',
-          }}
-          className="hero-grid"
-        >
-          {/* Left Column: Core SEO & Developer Value Proposition */}
-          <div>
-            {/* Status Indicator */}
-            <div style={{ marginBottom: '20px' }}>
-              <div className="status-badge">
-                <span className="pulse-dot" />
-                <span>Available for Senior Mobile & Full-Stack Roles</span>
-              </div>
-            </div>
-
-            {/* Main SEO Heading */}
-            <h1
-              style={{
-                fontSize: 'clamp(34px, 4.5vw, 54px)',
-                fontWeight: 900,
-                lineHeight: 1.15,
-                letterSpacing: '-1px',
-                marginBottom: '20px',
-              }}
-            >
-              Architecting Premium{' '}
-              <span className="gradient-text-red">Flutter Mobile</span> Apps &{' '}
-              <span className="gradient-text-pure-red">Full-Stack</span> Systems.
-            </h1>
-
-            {/* Keyword-Rich Subheading for SEO & Ranking */}
-            <p
-              style={{
-                fontSize: '17px',
-                color: 'var(--text-muted)',
-                lineHeight: 1.65,
-                marginBottom: '28px',
-                maxWidth: '600px',
-              }}
-            >
-              Hi, I’m <strong style={{ color: '#ffffff' }}>M. Arham</strong> — an expert Flutter Developer and Software Engineer (CGPA 3.58). I engineer high-performance cross-platform applications across AI fintech, service marketplaces, and daily utility apps, backed by clean architecture, Supabase, and full-stack web capabilities.
-            </p>
-
-            {/* Dynamic Tech Badges */}
-            <div
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '8px',
-                marginBottom: '36px',
-              }}
-            >
-              {[
-                { name: 'Flutter 3.x Expert', color: '#ff2a4b' },
-                { name: 'Dart Specialist', color: '#06b6d4' },
-                { name: 'GetX & BLoC', color: '#f59e0b' },
-                { name: 'Clean Architecture', color: '#10b981' },
-                { name: 'Supabase & Firebase', color: '#38bdf8' },
-                { name: 'Next.js & TypeScript', color: '#a855f7' },
-                { name: 'Python & Data Analysis', color: '#eab308' },
-              ].map((badge) => (
-                <span
-                  key={badge.name}
-                  style={{
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    padding: '5px 12px',
-                    borderRadius: 'var(--radius-full)',
-                    background: 'rgba(255, 255, 255, 0.04)',
-                    border: '1px solid var(--border-subtle)',
-                    color: 'var(--text-secondary)',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                  }}
-                >
-                  <span
-                    style={{
-                      width: '6px',
-                      height: '6px',
-                      borderRadius: '50%',
-                      backgroundColor: badge.color,
-                    }}
-                  />
-                  {badge.name}
-                </span>
-              ))}
-            </div>
-
-            {/* Action Buttons */}
-            <div
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '16px',
-                alignItems: 'center',
-              }}
-            >
-              <a href="#projects" className="btn-red">
-                <span>View Portfolio Projects</span>
-                <ArrowRight size={16} />
-              </a>
-
-              <a
-                href="#simulator"
-                className="btn-glass"
-                style={{
-                  border: '1px solid var(--border-red)',
-                }}
-              >
-                <Smartphone size={16} style={{ color: 'var(--red-primary)' }} />
-                <span>Test Interactive Flutter Sim</span>
-              </a>
-
-              <a
-                href="/Arham_Modern_CV_Single.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-glass"
-                title="Open Printable CV / Resume"
-              >
-                <Download size={15} />
-                <span>Download CV</span>
-              </a>
-            </div>
-          </div>
-
-          {/* Right Column: Dribbble Aesthetic Card with Portrait & Floating Badges */}
+      {/* 4-Column Subtle Editorial Grid Lines with Crosshair '+' Markers (Matches Video 00:00 - 00:02) */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          pointerEvents: 'none',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          zIndex: 1,
+        }}
+      >
+        {[0, 1, 2, 3].map((i) => (
           <div
+            key={i}
             style={{
+              borderRight: i < 3 ? '1px solid var(--hero-grid)' : 'none',
               position: 'relative',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
+              height: '100%',
             }}
           >
-            {/* Ambient Red Glow Sphere behind Portrait */}
-            <div
+            {/* Crosshair markers at 25%, 50%, 75% height */}
+            <span
               style={{
                 position: 'absolute',
-                width: '320px',
-                height: '320px',
-                borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(255, 42, 75, 0.35) 0%, transparent 70%)',
-                filter: 'blur(40px)',
-                zIndex: 0,
-              }}
-            />
-
-            {/* Main Portrait Card */}
-            <div
-              className="glass-card"
-              style={{
-                width: '100%',
-                maxWidth: '420px',
-                padding: '16px',
-                borderRadius: '28px',
-                border: '1px solid var(--border-red)',
-                boxShadow: 'var(--shadow-lg), var(--shadow-red)',
-                zIndex: 1,
-                position: 'relative',
+                top: '25%',
+                right: '-7px',
+                color: 'rgba(255, 255, 255, 0.4)',
+                fontSize: '13px',
+                lineHeight: 1,
+                fontFamily: 'monospace',
               }}
             >
-              {/* Image Frame */}
-              <div
-                style={{
-                  position: 'relative',
-                  width: '100%',
-                  aspectRatio: '1 / 1',
-                  borderRadius: '20px',
-                  overflow: 'hidden',
-                  background: 'var(--bg-secondary)',
-                  border: '1px solid var(--border-medium)',
-                }}
-              >
-                <Image
-                  src="/avatar.jpg"
-                  alt="M. Arham - Expert Flutter Developer and Software Engineer"
-                  fill
-                  priority
-                  style={{
-                    objectFit: 'cover',
-                  }}
-                />
-
-                {/* Top Corner Badge: Flutter Expert */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '12px',
-                    left: '12px',
-                    background: 'rgba(10, 10, 15, 0.85)',
-                    backdropFilter: 'blur(8px)',
-                    border: '1px solid var(--border-red)',
-                    padding: '6px 12px',
-                    borderRadius: 'var(--radius-full)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    fontSize: '11.5px',
-                    fontWeight: 700,
-                    color: '#ffffff',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
-                  }}
-                >
-                  <Cpu size={14} style={{ color: 'var(--red-primary)' }} />
-                  <span>Flutter Specialist</span>
-                </div>
-
-                {/* Bottom Corner Overlay */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: '12px',
-                    right: '12px',
-                    background: 'rgba(10, 10, 15, 0.85)',
-                    backdropFilter: 'blur(8px)',
-                    border: '1px solid rgba(16, 185, 129, 0.4)',
-                    padding: '6px 12px',
-                    borderRadius: 'var(--radius-full)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    fontSize: '11.5px',
-                    fontWeight: 700,
-                    color: '#10b981',
-                  }}
-                >
-                  <CheckCircle2 size={13} />
-                  <span>3.58 CGPA (BS SE)</span>
-                </div>
-              </div>
-
-              {/* Developer Metadata Pill */}
-              <div
-                style={{
-                  marginTop: '16px',
-                  padding: '12px 14px',
-                  borderRadius: '14px',
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid var(--border-subtle)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <div>
-                  <div style={{ fontWeight: 800, fontSize: '15px' }}>M. Arham</div>
-                  <div style={{ fontSize: '11.5px', color: 'var(--text-muted)' }}>
-                    Mobile Architecture • REST APIs • Cloud
-                  </div>
-                </div>
-                <div
-                  style={{
-                    width: '32px',
-                    height: '32px',
-                    borderRadius: '8px',
-                    background: 'rgba(255, 42, 75, 0.15)',
-                    border: '1px solid var(--border-red)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'var(--red-primary)',
-                  }}
-                >
-                  <Sparkles size={16} />
-                </div>
-              </div>
-            </div>
-
-            {/* Floating Dribbble Pill 1: 60 FPS */}
-            <div
-              className="animate-float"
+              +
+            </span>
+            <span
               style={{
                 position: 'absolute',
-                top: '-15px',
-                right: '-10px',
-                background: 'rgba(15, 15, 22, 0.9)',
-                backdropFilter: 'blur(12px)',
-                border: '1px solid var(--border-red)',
-                borderRadius: 'var(--radius-full)',
-                padding: '8px 16px',
-                fontSize: '12px',
-                fontWeight: 700,
-                color: '#ffffff',
-                boxShadow: 'var(--shadow-red)',
-                zIndex: 3,
+                top: '55%',
+                right: '-7px',
+                color: 'rgba(255, 255, 255, 0.4)',
+                fontSize: '13px',
+                lineHeight: 1,
+                fontFamily: 'monospace',
+              }}
+            >
+              +
+            </span>
+            <span
+              style={{
+                position: 'absolute',
+                top: '80%',
+                right: '-7px',
+                color: 'rgba(255, 255, 255, 0.4)',
+                fontSize: '13px',
+                lineHeight: 1,
+                fontFamily: 'monospace',
+              }}
+            >
+              +
+            </span>
+          </div>
+        ))}
+      </div>
+
+      {/* Massive Watermark Typography in Background: 'ARHAM' (Matches Video 00:01 - 00:03) */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: '32%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          fontSize: 'clamp(90px, 20vw, 290px)',
+          fontFamily: 'Outfit, sans-serif',
+          fontWeight: 900,
+          letterSpacing: '-0.04em',
+          textTransform: 'uppercase',
+          color: 'rgba(255, 255, 255, 0.08)',
+          whiteSpace: 'nowrap',
+          userSelect: 'none',
+          pointerEvents: 'none',
+          zIndex: 2,
+        }}
+      >
+        ARHAM
+      </div>
+
+      {/* Central Portrait of Creator (Matches Video 00:01 - 00:03) */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: 'clamp(320px, 45vw, 650px)',
+          height: 'clamp(420px, 68vh, 760px)',
+          zIndex: 3,
+          pointerEvents: 'none',
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'center',
+        }}
+      >
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: '100%',
+            maskImage: 'linear-gradient(to top, transparent 0%, black 18%, black 100%)',
+            WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 18%, black 100%)',
+          }}
+        >
+          <Image
+            src="/avatar.jpg"
+            alt="M. Arham - Expert Flutter Developer and Mobile Architect"
+            fill
+            priority
+            style={{
+              objectFit: 'contain',
+              objectPosition: 'bottom center',
+              filter: 'contrast(1.05) drop-shadow(0 20px 40px rgba(0, 0, 0, 0.45))',
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Foreground Content Layout */}
+      <div
+        style={{
+          maxWidth: '1320px',
+          margin: '0 auto',
+          width: '100%',
+          padding: '40px 32px 32px',
+          position: 'relative',
+          zIndex: 4,
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+        }}
+      >
+        {/* Top Bar Row: Left Tagline & Right Floating Featured Card */}
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            gap: '24px',
+          }}
+        >
+          {/* Left Tagline Pill & Bio Note */}
+          <div style={{ maxWidth: '380px' }}>
+            <div
+              style={{
+                display: 'inline-block',
+                background: 'rgba(0, 0, 0, 0.22)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                padding: '10px 18px',
+                borderRadius: '6px',
+                marginBottom: '16px',
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: 'Outfit, sans-serif',
+                  fontSize: '12.5px',
+                  fontWeight: 700,
+                  letterSpacing: '1px',
+                  lineHeight: '1.45',
+                  textTransform: 'uppercase',
+                  color: 'rgba(255, 255, 255, 0.95)',
+                  margin: 0,
+                }}
+              >
+                I ARCHITECT HIGH-PERFORMANCE CROSS-PLATFORM MOBILE EXPERIENCES THAT ARE FAST, ROBUST AND IMPACTFUL
+              </p>
+            </div>
+            <div
+              style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
+                fontSize: '13px',
+                color: 'rgba(255, 255, 255, 0.8)',
               }}
             >
               <span
@@ -329,101 +219,260 @@ export default function HeroWidget() {
                   width: '8px',
                   height: '8px',
                   borderRadius: '50%',
-                  backgroundColor: '#ff2a4b',
-                  boxShadow: '0 0 8px #ff2a4b',
+                  background: '#22c55e',
+                  boxShadow: '0 0 10px #22c55e',
                 }}
               />
-              <span>60 FPS Fluid UI</span>
-            </div>
-
-            {/* Floating Dribbble Pill 2: Clean Arch */}
-            <div
-              className="animate-float"
-              style={{
-                position: 'absolute',
-                bottom: '10px',
-                left: '-20px',
-                background: 'rgba(15, 15, 22, 0.9)',
-                backdropFilter: 'blur(12px)',
-                border: '1px solid var(--border-subtle)',
-                borderRadius: 'var(--radius-full)',
-                padding: '8px 16px',
-                fontSize: '12px',
-                fontWeight: 700,
-                color: 'var(--text-secondary)',
-                boxShadow: 'var(--shadow-md)',
-                zIndex: 3,
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                animationDelay: '1.5s',
-              }}
-            >
-              <Layers size={14} style={{ color: 'var(--red-primary)' }} />
-              <span>Clean Architecture</span>
+              <span>Available for Senior Mobile Roles & Sprints</span>
             </div>
           </div>
+
+          {/* Right Floating Project Card (Matches Video 00:01 - 00:03) */}
+          <a
+            href="#projects-section"
+            style={{
+              textDecoration: 'none',
+              color: 'inherit',
+              display: 'block',
+              transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-6px) scale(1.02)')}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(0) scale(1)')}
+          >
+            <div
+              style={{
+                background: '#ffffff',
+                color: '#0f0f13',
+                padding: '12px',
+                borderRadius: '8px',
+                boxShadow: '0 16px 36px rgba(0, 0, 0, 0.35)',
+                width: '185px',
+                border: '1px solid rgba(255, 255, 255, 0.6)',
+              }}
+            >
+              {/* Thumbnail */}
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: '140px',
+                  borderRadius: '4px',
+                  overflow: 'hidden',
+                  background: '#14141a',
+                  marginBottom: '10px',
+                }}
+              >
+                <Image
+                  src="/project_images/monefii (ai expense tracker) images/Frame 176.png"
+                  alt="Monefii AI Expense Tracker"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
+
+              {/* Meta */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '2px 4px',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                  <span
+                    style={{
+                      width: '7px',
+                      height: '7px',
+                      borderRadius: '50%',
+                      background: 'var(--red-accent)',
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontFamily: 'Outfit, sans-serif',
+                      fontSize: '11px',
+                      fontWeight: 800,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px',
+                    }}
+                  >
+                    Monefii
+                  </span>
+                </div>
+                <span style={{ fontSize: '10.5px', color: '#686877', fontWeight: 600 }}>
+                  /Fintech AI
+                </span>
+              </div>
+            </div>
+          </a>
         </div>
 
-        {/* Stats Strip Widget */}
+        {/* Bottom Bar Row: Left Huge Title & Right Interactive Chat Card */}
         <div
           style={{
-            marginTop: '70px',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '18px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+            gap: '24px',
+            marginTop: 'auto',
+            paddingTop: '60px',
           }}
-          className="stats-grid"
         >
-          {statsMetrics.map((stat) => (
-            <div
-              key={stat.id}
-              className="glass-card"
+          {/* Bottom Left Title: '©2026 MICHAEL' in video -> '©2026 ARHAM' */}
+          <div>
+            <span
               style={{
-                padding: '20px 22px',
+                fontFamily: 'Outfit, sans-serif',
+                fontSize: '14px',
+                fontWeight: 700,
+                letterSpacing: '2px',
+                color: 'rgba(255, 255, 255, 0.8)',
+                display: 'block',
+                marginBottom: '4px',
+              }}
+            >
+              ©2026
+            </span>
+            <h1
+              style={{
+                fontFamily: 'Outfit, sans-serif',
+                fontSize: 'clamp(54px, 11vw, 150px)',
+                fontWeight: 900,
+                lineHeight: 0.85,
+                letterSpacing: '-0.04em',
+                textTransform: 'uppercase',
+                color: '#ffffff',
+                margin: 0,
+                textShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+              }}
+            >
+              Arham
+            </h1>
+          </div>
+
+          {/* Bottom Right Floating Chat / Status Widget (Matches Video 00:01 - 00:03) */}
+          {chatWidgetOpen && (
+            <div
+              style={{
+                background: '#111116',
+                color: '#ffffff',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                borderRadius: '12px',
+                padding: '12px 18px',
                 display: 'flex',
-                flexDirection: 'column',
-                gap: '6px',
-                borderLeft: '3px solid var(--red-primary)',
+                alignItems: 'center',
+                gap: '14px',
+                boxShadow: '0 18px 40px rgba(0, 0, 0, 0.5)',
+                maxWidth: '280px',
+                position: 'relative',
               }}
             >
               <div
                 style={{
-                  fontSize: 'clamp(26px, 2.5vw, 34px)',
-                  fontWeight: 900,
-                  color: '#ffffff',
-                  letterSpacing: '-0.5px',
-                  display: 'flex',
-                  alignItems: 'baseline',
-                  gap: '4px',
+                  position: 'relative',
+                  width: '42px',
+                  height: '42px',
+                  borderRadius: '50%',
+                  overflow: 'hidden',
+                  border: '2px solid var(--red-accent)',
+                  flexShrink: 0,
                 }}
               >
-                <span>{stat.value}</span>
+                <Image
+                  src="/avatar.jpg"
+                  alt="M. Arham"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
               </div>
-              <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-primary)' }}>
-                {stat.label}
+
+              <div style={{ flex: 1 }}>
+                <span
+                  style={{
+                    fontSize: '11px',
+                    color: 'rgba(255, 255, 255, 0.55)',
+                    display: 'block',
+                    fontWeight: 600,
+                  }}
+                >
+                  Let&apos;s Talk
+                </span>
+                <span
+                  style={{
+                    fontFamily: 'Outfit, sans-serif',
+                    fontSize: '14px',
+                    fontWeight: 800,
+                    color: '#ffffff',
+                    display: 'block',
+                  }}
+                >
+                  M. Arham
+                </span>
+                <span
+                  style={{
+                    fontSize: '11px',
+                    color: 'var(--red-primary)',
+                    fontWeight: 600,
+                  }}
+                >
+                  Senior Flutter Dev
+                </span>
               </div>
-              <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
-                {stat.sublabel}
-              </div>
+
+              <a
+                href="#contact-section"
+                aria-label="Direct message"
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '6px',
+                  background: 'var(--red-accent)',
+                  color: '#ffffff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  textDecoration: 'none',
+                  transition: 'background 0.2s',
+                  flexShrink: 0,
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = '#c72e18')}
+                onMouseLeave={(e) => (e.currentTarget.style.background = 'var(--red-accent)')}
+              >
+                <ArrowUpRight size={17} />
+              </a>
+
+              <button
+                onClick={() => setChatWidgetOpen(false)}
+                aria-label="Dismiss chat widget"
+                style={{
+                  position: 'absolute',
+                  top: '-8px',
+                  right: '-8px',
+                  width: '20px',
+                  height: '20px',
+                  borderRadius: '50%',
+                  background: '#22222b',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  color: '#ffffff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  fontSize: '10px',
+                }}
+              >
+                <X size={11} />
+              </button>
             </div>
-          ))}
+          )}
         </div>
       </div>
 
       <style jsx>{`
-        @media (max-width: 960px) {
-          :global(.hero-grid) {
-            grid-template-columns: 1fr !important;
-            gap: 40px !important;
-          }
-          :global(.stats-grid) {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
-        }
-        @media (max-width: 540px) {
-          :global(.stats-grid) {
-            grid-template-columns: 1fr !important;
+        @media (max-width: 800px) {
+          :global(#hero) {
+            min-height: 92vh !important;
           }
         }
       `}</style>

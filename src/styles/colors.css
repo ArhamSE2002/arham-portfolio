@@ -1,36 +1,52 @@
 /* ==========================================================================
-   ARHAM PORTFOLIO - CENTRALIZED COLOR THEME SYSTEM (BLACK & RED)
-   ==========================================================================
-   All color tokens for the entire portfolio are defined here.
-   To switch or customize the theme, simply modify these CSS variables!
+   ARHAM PORTFOLIO - THEME TOKENS & FRAMER EDITORIAL DESIGN SYSTEM
    ========================================================================== */
 
 :root {
-  /* Surface & Background Blacks (Obsidian, Onyx, Deep Midnight) */
+  /* User's Signature Black & Crimson Palette */
   --bg-primary: #070709;
   --bg-secondary: #0d0d12;
   --bg-tertiary: #13131b;
   --bg-card: rgba(16, 16, 23, 0.72);
   --bg-card-hover: rgba(24, 24, 34, 0.85);
   --bg-glass: rgba(8, 8, 12, 0.75);
-  --bg-glass-elevated: rgba(20, 20, 28, 0.8);
+  --bg-glass-elevated: rgba(20, 20, 28, 0.85);
   --bg-input: #121219;
 
   /* Primary Brand Red Spectrum */
   --red-primary: #ff2a4b;          /* Vibrant Neon Crimson */
-  --red-accent: #ef4444;           /* Energetic Pure Red */
+  --red-accent: #ea3820;           /* Energetic Warm Crimson / Terracotta Red */
   --red-deep: #b91c1c;             /* Deep Scarlet */
   --red-dark: #7f1d1d;             /* Midnight Wine */
   --red-glow: rgba(255, 42, 75, 0.35);
   --red-glow-subtle: rgba(255, 42, 75, 0.12);
   --red-glow-strong: rgba(255, 42, 75, 0.6);
-  --red-gradient-start: #ff2a4b;
-  --red-gradient-end: #b91c1c;
 
-  /* Secondary Accents */
-  --accent-cyan: #06b6d4;
-  --accent-amber: #f59e0b;
-  --accent-emerald: #10b981;
+  /* Video Hero Canvas (Warm Crimson Terracotta matching Video Aesthetic) */
+  --hero-bg: #bd3216;
+  --hero-bg-deep: #9d250d;
+  --hero-canvas: linear-gradient(180deg, #c73719 0%, #aa2c11 60%, #881e09 100%);
+  --hero-grid: rgba(255, 255, 255, 0.15);
+  --hero-watermark: rgba(255, 255, 255, 0.12);
+
+  /* Editorial Light Sections (Impact, Services, Projects, Bento, Insights) */
+  --light-bg: #f6f5f1;
+  --light-surface: #ffffff;
+  --light-border: #e7e6e0;
+  --light-border-subtle: #ecebe6;
+  --light-text-title: #0f0f12;
+  --light-text-body: #555562;
+  --light-text-muted: #888896;
+
+  /* Obsidian Deep Black Sections (Process, Pricing, Contact, Footer) */
+  --dark-bg: #09090c;
+  --dark-surface: #121217;
+  --dark-card: #181820;
+  --dark-border: rgba(255, 255, 255, 0.1);
+  --dark-border-hover: rgba(255, 42, 75, 0.5);
+  --dark-text-title: #ffffff;
+  --dark-text-body: #a2a2b0;
+  --dark-text-muted: #6e6e7d;
 
   /* Typography & Foreground Colors */
   --text-primary: #ffffff;
@@ -47,20 +63,23 @@
   --border-red-active: rgba(255, 42, 75, 0.75);
 
   /* Elevation & Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.6);
-  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.75);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.06);
   --shadow-red: 0 0 24px rgba(255, 42, 75, 0.28);
   --shadow-red-strong: 0 0 35px rgba(255, 42, 75, 0.5);
 
   /* Radius Tokens */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
   --radius-full: 9999px;
 
   /* Animation Timings */
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }

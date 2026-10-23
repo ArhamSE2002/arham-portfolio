@@ -1,7 +1,7 @@
 @import './colors.css';
 
 /* ==========================================================================
-   ARHAM PORTFOLIO - GLOBAL STYLES & DRIBBBLE-STYLE MICRO-ANIMATIONS
+   ARHAM PORTFOLIO - FRAMER EDITORIAL GLOBAL STYLES & ANIMATIONS
    ========================================================================== */
 
 * {
@@ -12,306 +12,264 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-}
-
-body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.6;
-  min-height: 100vh;
-  overflow-x: hidden;
-  position: relative;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--light-bg);
+  color: var(--light-text-title);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Ambient Background Radial Grid & Lighting */
-.ambient-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 0;
-  background-image: 
-    radial-gradient(circle at 15% 15%, rgba(255, 42, 75, 0.12) 0%, transparent 45%),
-    radial-gradient(circle at 85% 65%, rgba(185, 28, 28, 0.09) 0%, transparent 40%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
-  background-position: 0 0, 0 0, -1px -1px, -1px -1px;
+body {
+  background-color: var(--light-bg);
+  color: var(--light-text-title);
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Heading Typography */
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 /* Custom Sleek Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: #0e0e12;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border-medium);
+  background: var(--red-accent);
   border-radius: var(--radius-full);
-  border: 2px solid var(--bg-primary);
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--red-primary);
-  box-shadow: 0 0 10px var(--red-glow);
 }
 
 /* Selection Color */
 ::selection {
-  background: var(--red-primary);
+  background: var(--red-accent);
   color: #ffffff;
 }
 
-/* Glassmorphism Card Style */
-.glass-card {
-  background: var(--bg-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-normal);
+/* Editorial Container Utility */
+.editorial-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 100px 32px;
   position: relative;
-  overflow: hidden;
 }
 
-.glass-card:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--border-red);
-  box-shadow: var(--shadow-lg), var(--shadow-red);
-  transform: translateY(-4px);
-}
-
-/* Red Gradient Text */
-.gradient-text-red {
-  background: linear-gradient(135deg, #ffffff 10%, #ff6b81 50%, var(--red-primary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-}
-
-.gradient-text-pure-red {
-  background: linear-gradient(135deg, #ff4d6d 0%, var(--red-primary) 50%, #b91c1c 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-}
-
-/* Primary Button with Neon Red Glow */
-.btn-red {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: linear-gradient(135deg, var(--red-primary), var(--red-deep));
-  color: #ffffff;
-  padding: 12px 26px;
-  border-radius: var(--radius-full);
-  font-weight: 600;
-  font-size: 14.5px;
-  text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 18px var(--red-glow);
-  cursor: pointer;
-  transition: all var(--transition-normal);
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-red:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 26px var(--red-glow-strong);
-  filter: brightness(1.1);
-}
-
-.btn-red:active {
-  transform: translateY(0);
-}
-
-/* Secondary Button with Glass Background */
-.btn-glass {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: var(--bg-glass-elevated);
-  backdrop-filter: blur(12px);
-  color: var(--text-secondary);
-  padding: 12px 24px;
-  border-radius: var(--radius-full);
-  font-weight: 600;
-  font-size: 14.5px;
-  text-decoration: none;
-  border: 1px solid var(--border-medium);
-  box-shadow: var(--shadow-sm);
-  cursor: pointer;
-  transition: all var(--transition-normal);
-}
-
-.btn-glass:hover {
-  color: #ffffff;
-  border-color: var(--border-red);
-  background: rgba(255, 42, 75, 0.08);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(255, 42, 75, 0.15);
-}
-
-/* Live Status Badge with Pulsing Red Dot */
-.status-badge {
+/* Editorial Eyebrow Tag Pill */
+.eyebrow-tag {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 42, 75, 0.08);
-  border: 1px solid var(--border-red);
   padding: 6px 14px;
   border-radius: var(--radius-full);
-  font-size: 12px;
-  font-weight: 600;
-  color: #ff8598;
-  letter-spacing: 0.3px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-}
-
-.pulse-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--red-primary);
-  box-shadow: 0 0 10px var(--red-primary);
-  animation: pulse-glow 2s infinite ease-in-out;
-}
-
-/* Category Filter Tabs */
-.filter-tab {
   background: transparent;
-  border: 1px solid var(--border-subtle);
-  color: var(--text-muted);
-  padding: 8px 18px;
-  border-radius: var(--radius-full);
-  font-size: 13.5px;
-  font-weight: 500;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #555562;
+  margin-bottom: 24px;
+}
+
+.eyebrow-tag.dark {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #b0b0be;
+}
+
+.eyebrow-tag.accent {
+  border-color: var(--red-accent);
+  color: var(--red-accent);
+  background: rgba(234, 56, 32, 0.08);
+}
+
+/* Editorial Section Heading */
+.editorial-heading {
+  font-size: clamp(38px, 5.2vw, 68px);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--light-text-title);
+  margin-bottom: 32px;
+}
+
+.editorial-heading.dark {
+  color: #ffffff;
+}
+
+.editorial-heading .muted-span {
+  color: #8c8c9a;
+}
+
+/* Primary Framer Button */
+.btn-framer-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--red-accent);
+  color: #ffffff;
+  padding: 13px 28px;
+  border-radius: 4px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 16px rgba(234, 56, 32, 0.25);
+}
+
+.btn-framer-primary:hover {
+  background: #c72e18;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(234, 56, 32, 0.38);
+}
+
+/* Dark Framer Button */
+.btn-framer-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #0f0f13;
+  color: #ffffff;
+  padding: 13px 28px;
+  border-radius: 4px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
   transition: all var(--transition-fast);
 }
 
-.filter-tab:hover {
-  color: var(--text-primary);
-  border-color: var(--border-medium);
+.btn-framer-dark:hover {
+  background: #1c1c24;
+  border-color: #ffffff;
+  transform: translateY(-2px);
 }
 
-.filter-tab.active {
-  background: var(--red-primary);
+/* Clean Editorial Card */
+.editorial-card {
+  background: var(--light-surface);
+  border: 1px solid var(--light-border);
+  border-radius: var(--radius-sm);
+  padding: 32px;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-normal);
+}
+
+.editorial-card:hover {
+  border-color: #cfceca;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+}
+
+/* Dark Section Background */
+.dark-section {
+  background-color: var(--dark-bg);
   color: #ffffff;
-  border-color: var(--red-primary);
-  box-shadow: 0 2px 14px var(--red-glow);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Animations */
-@keyframes pulse-glow {
-  0%, 100% {
-    transform: scale(0.95);
-    opacity: 0.8;
-    box-shadow: 0 0 0 0 rgba(255, 42, 75, 0.7);
-  }
-  50% {
-    transform: scale(1.15);
-    opacity: 1;
-    box-shadow: 0 0 0 6px rgba(255, 42, 75, 0);
-  }
-}
-
-@keyframes float-subtle {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-@keyframes shimmer {
+/* Marquee Continuous Infinite Animation */
+@keyframes marquee-scroll {
   0% {
-    background-position: -200% 0;
+    transform: translateX(0%);
   }
   100% {
-    background-position: 200% 0;
+    transform: translateX(-50%);
   }
 }
 
-.animate-float {
-  animation: float-subtle 5s ease-in-out infinite;
-}
-
-/* Section Container Utilities */
-.section-container {
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 90px 24px;
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  width: max-content;
+  animation: marquee-scroll 24s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Quranic Quote & Project Image Framing without white border artifacts */
+.clean-project-image-frame {
   position: relative;
-  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+  background-color: #101014;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.section-header {
-  text-align: center;
-  margin-bottom: 56px;
+.clean-project-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.section-tag {
-  display: inline-block;
-  color: var(--red-primary);
-  font-size: 12.5px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 8px;
+/* For mobile mockups (Islam Master) with transparent corners */
+.phone-mockup-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
 }
 
-.section-title {
-  font-size: clamp(28px, 4vw, 42px);
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  color: var(--text-primary);
-  margin-bottom: 12px;
+.phone-mockup-frame img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.25));
 }
 
-.section-description {
-  font-size: 15.5px;
-  color: var(--text-muted);
-  max-width: 620px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-/* Layout Utilities */
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
+/* Responsive Utilities */
 @media (max-width: 900px) {
-  .grid-2, .grid-3 {
-    grid-template-columns: 1fr;
+  .editorial-container {
+    padding: 70px 20px;
   }
-  .section-container {
-    padding: 60px 16px;
+  .editorial-heading {
+    font-size: clamp(32px, 8vw, 44px);
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .editorial-container {
+    padding: 50px 16px;
   }
 }

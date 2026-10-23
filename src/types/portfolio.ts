@@ -11,7 +11,68 @@ export interface Project {
   githubUrl?: string;
   liveUrl?: string;
   badge?: string;
+  tag?: string;
   iconName: string;
+  coverImage: string;
+  galleryImages?: string[];
+}
+
+export interface ServiceItem {
+  id: string;
+  number: string;
+  title: string;
+  headline: string;
+  description: string;
+  tags: string[];
+  previewImages: string[];
+}
+
+export interface ProcessStep {
+  step: string;
+  title: string;
+  description: string;
+  details: string[];
+}
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  company: string;
+  rating: number;
+  content: string;
+  avatar: string;
+}
+
+export interface PricingPlan {
+  id: string;
+  title: string;
+  type: 'project' | 'monthly';
+  price: string;
+  duration: string;
+  description: string;
+  deliveryTime: string;
+  revisions: string;
+  format: string;
+  features: string[];
+  guarantee: string;
+  badge?: string;
+}
+
+export interface InsightArticle {
+  id: string;
+  title: string;
+  category: string;
+  date: string;
+  readTime: string;
+  image: string;
+  author: string;
+  excerpt: string;
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
 }
 
 export interface Experience {
@@ -29,7 +90,7 @@ export interface Experience {
 
 export interface SkillItem {
   name: string;
-  level: number; // 0 - 100
+  level: number;
   tier: 'Expert' | 'Proficient' | 'Familiar';
   description: string;
   iconName: string;
@@ -50,6 +111,8 @@ export interface Certification {
   credentialId?: string;
   skills: string[];
   verified: boolean;
+  year?: string;
+  badge?: string;
 }
 
 export interface Education {
